@@ -1,6 +1,6 @@
 <template>
   <div id="example">
-    dddddddddddddddddddddddddddddd
+    ccccccccccccccccc
     <div>
       <span class="svg-icon__label">svg图标</span>
       <base-icon
