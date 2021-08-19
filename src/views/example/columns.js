@@ -64,7 +64,25 @@ export const columns = [
     slot: "testSlot",
     attrs: {
       prop: "testSlot",
-      label: "测试插槽"
+      label: "测试插槽",
+      width: "200"
+    }
+  },
+  {
+    select: true,
+    attrs: {
+      prop: "select",
+      label: "测试xxx",
+      width: "200"
+    }
+  },
+  {
+    input: true,
+    type: "input",
+    attrs: {
+      prop: "testSlot",
+      label: "test5",
+      width: "200"
     }
   }
 ];

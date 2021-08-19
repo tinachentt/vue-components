@@ -28,6 +28,12 @@
           <span v-if="column.slot">
             <slot :name="column.slot" :scope="scope" />
           </span>
+          <span v-else-if="column.input">
+            <el-input
+              v-model="scope.row[column.attrs.prop]"
+              placeholder="请输入内容"
+            ></el-input>
+          </span>
 
           <!--操作图标-->
           <div v-else-if="column.operations">
@@ -59,7 +65,7 @@
             </template>
           </div>
 
-          <span v-else>{{ scope.row[column.attr] }}</span>
+          <span v-else>{{ scope.row[column.attrs.prop] }}</span>
         </template>
       </el-table-column>
     </template>
@@ -93,6 +99,8 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$attrs, this.$listeners);
+
     //代理父组件的columns属性
     let parentComponent = findComponentUpwardByProp(this, "columns");
     if (parentComponent) {
@@ -103,10 +111,12 @@ export default {
       throw new Error("can not find parentComponent");
     }
   },
+  created() {},
   methods: {
+    cellClick() {},
     // 是否是一个常规的table-column(有以下标签就不是常规table-column)
     isCommonTableColumn(column) {
-      const specialColumnList = ["slot"];
+      const specialColumnList = ["slot", "input", "select"];
       return !specialColumnList.some(option => column[option]);
     },
     //点击操作按钮触发的事件

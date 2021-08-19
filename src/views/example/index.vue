@@ -21,9 +21,17 @@
       </template>
     </base-form>
 
-    <base-table :data="tableData" :columns="columns">
+    <base-table
+      :data="tableData"
+      :columns="columns"
+      empty-text="xixiixixixixixi"
+      @row-click="rowclick"
+      @cell-click="cellclick"
+    >
       <template v-slot:testSlot="{ scope }">
-        {{ scope.row.testSlot | format }}
+        <span style="background-color: pink;">{{
+          scope.row.testSlot | format
+        }}</span>
       </template>
     </base-table>
 
@@ -58,7 +66,15 @@ export default {
       mergeForm: {
         slotCheckBox: ""
       },
-      tableData: [],
+      tableData: [
+        // {
+        //   dataType: "1",
+        //   infoType: "2",
+        //   requestTime: "2012",
+        //   testSlot: "test",
+        //   select: "select66"
+        // }
+      ],
       showTableHeader: false
     };
   },
@@ -66,6 +82,12 @@ export default {
     await this.getInfo();
   },
   methods: {
+    rowclick() {
+      // console.log(666);
+    },
+    cellclick(row) {
+      console.log(row);
+    },
     showTableData(res) {
       this.tableData = res.tableData;
     },
